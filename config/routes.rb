@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "pages/about"
   root "libraries#index"
 
   # Main nested routes structure

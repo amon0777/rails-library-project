@@ -1,0 +1,86 @@
+<h1>About the Manitoba Public Libraries Web Application</h1>
+
+<p>
+  This web application was built to organize and display data about public libraries in Manitoba, Canada. 
+  The platform enables users to browse and search for libraries, view their associated service areas, and analyze 
+  various statistics such as active users, resources, and population served. The goal is to provide an easy-to-navigate, 
+  data-driven tool for exploring the structure and performance of Manitoba's library system.
+</p>
+
+<hr>
+
+<h2>Data Sources (1.1)</h2>
+
+<p>
+  The application utilizes fictionalized and representative datasets that model the relationships between libraries, 
+  their service areas, and collected statistical data. These datasets simulate how real-world public library systems 
+  are organized and managed.
+</p>
+
+<ul>
+  <li>
+    <strong>Libraries:</strong> Each record represents a public library in Manitoba, including attributes such as:
+    <ul>
+      <li>Name</li>
+      <li>Population served</li>
+      <li>Whether the library is bilingual</li>
+      <li>Whether the library is located in a northern community</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Service Areas:</strong> Libraries serve multiple service areas, and each service area contains:
+    <ul>
+      <li>Name</li>
+      <li>Associated library ID (foreign key)</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Statistics:</strong> Statistical records are collected yearly for each service area. These include:
+    <ul>
+      <li>Year</li>
+      <li>Active users</li>
+      <li>Total population/li>
+     
+    </ul>
+  </li>
+</ul>
+
+<p>
+  These three models are related as follows: A <strong>Library</strong> has many <strong>Service Areas</strong>, 
+  and each <strong>Service Area</strong> has many <strong>Statistics</strong>. This relationship enables the application 
+  to provide hierarchical browsing, filtering, and reporting of library data.
+</p>
+
+<hr>
+
+
+<p>
+  <strong>Legend:</strong>
+  <ul>
+    <li><code>Library</code> has many <code>ServiceAreas</code></li>
+    <li><code>ServiceArea</code> belongs to a <code>Library</code> and has many <code>Statistics</code></li>
+    <li><code>Statistic</code> belongs to a <code>ServiceArea</code></li>
+  </ul>
+</p>
+
+<hr>
+
+<h2>Features Implemented</h2>
+
+<ul>
+  <li>Search and filter libraries by name, service area, and statistics thresholds</li>
+  <li>Hierarchical browsing (Library → Service Areas → Statistics)</li>
+  <li>Nested filtering using Ransack</li>
+  <li>Bootstrap grid layout and styling</li>
+  <li>Pagination with Kaminari</li>
+  <li>ERD and project documentation on the About page</li>
+</ul>
+
+<hr>
+
+<p>
+  This project was developed as part of the Intro to Rails course assignment, showcasing database design, 
+  model relationships, data filtering, pagination, and Bootstrap integration using Ruby on Rails.
+</p>
