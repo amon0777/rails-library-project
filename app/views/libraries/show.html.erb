@@ -1,0 +1,39 @@
+<h1><%= @library.name %></h1>
+
+<h2 class="mt-4">Service Areas</h2>
+
+<% @library.service_areas.each do |area| %>
+      <li>
+      <%= link_to area.name, library_service_area_path(@library, area) %>
+    </li>
+  <div class="card mb-4">
+    <div class="card-header">
+      <strong>Municipality:</strong> <%= area.name %>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Population</th>
+            <th>Active Users</th>
+            <th>Percent Active</th>
+            <th>Bilingual</th>
+            <th>Northern</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% area.statistics.each do |stat| %>
+            <tr>
+              <td><%= stat.population %></td>
+              <td><%= stat.active_users %></td>
+             <td><%= number_with_precision(stat.percentage, precision: 1) %>%</td>
+
+              <td><%= stat.bilingual ? "Yes" : "No" %></td>
+              <td><%= stat.northern ? "Yes" : "No" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

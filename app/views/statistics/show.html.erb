@@ -1,0 +1,7 @@
+<h1>Statistic #<%= @statistic.id %></h1>
+
+<p><strong>Service Area:</strong> <%= link_to @statistic.service_area.name, service_area_path(@statistic.service_area) %></p>
+
+<p><strong>Active Users:</strong> <%= @statistic.active_users %></p>
+<p><strong>Percent Active:</strong> <%= number_with_precision(@statistic.percentage, precision: 1) %>%
+

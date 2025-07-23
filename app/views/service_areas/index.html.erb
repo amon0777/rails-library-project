@@ -1,0 +1,31 @@
+<h1>Service Areas</h1>
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <%= form_with url: service_areas_path, method: :get, local: true do %>
+        <div class="input-group">
+          <%= select_tag :library_id,
+              options_from_collection_for_select(@libraries, :id, :name, params[:library_id]),
+              include_blank: "All Libraries",
+              class: "form-select" %>
+          <button class="btn btn-primary ms-2" type="submit">Filter</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @service_areas.each do |area| %>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to area.name, service_area_path(area) %></h5>
+            <p class="card-text">Library: <%= area.library.name %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate @service_areas %>

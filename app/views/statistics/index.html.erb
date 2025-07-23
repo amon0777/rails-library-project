@@ -1,0 +1,38 @@
+<h1>Statistics</h1>
+
+<div class="container">
+  <%= form_with url: statistics_path, method: :get, local: true do %>
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <%= label_tag :min_users, "Min Active Users" %>
+        <%= number_field_tag :min_users, params[:min_users], class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= label_tag :max_users, "Max Active Users" %>
+        <%= number_field_tag :max_users, params[:max_users], class: "form-control" %>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <%= submit_tag "Filter", class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <% @statistics.each do |stat| %>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Statistic #<%= stat.id %></h5>
+            <p class="card-text">
+              Active Users: <%= stat.active_users %><br>
+              Population: <%= stat.population %><br>
+              Area: <%= link_to stat.service_area.name, service_area_path(stat.service_area) %>
+            </p>
+            <%= link_to "View", statistic_path(stat), class: "btn btn-sm btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate @statistics %>

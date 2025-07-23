@@ -1,0 +1,18 @@
+<h1><%= @service_area.name %></h1>
+
+<p>Library: <%= @service_area.library.name %></p>
+<p>Population: <%= @service_area.population %></p>
+<p>Municipality: <%= @service_area.municipality %></p>
+
+<h3>Statistics</h3>
+<ul>
+  <% @service_area.statistics.each do |stat| %>
+    <!-- Option 1: Using nested route -->
+    <li><%= link_to "Statistic ##{stat.id} (nested)", library_service_area_statistic_path(@service_area.library, @service_area, stat) %></li>
+    
+   
+  <% end %>
+</ul>
+
+<%= link_to "Back to Library", library_path(@service_area.library) %>
+<%= link_to "All Libraries", libraries_path %>

@@ -1,0 +1,54 @@
+<h1>Libraries</h1>
+
+<div class="container">
+  <div class="row">
+    <!-- Search Form Column -->
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header bg-dark text-white">Search</div>
+        <div class="card-body">
+          <%= search_form_for @q, url: libraries_path, method: :get do |f| %>
+            <div class="mb-3">
+              <%= f.label :name_cont, "Search by Name" %>
+              <%= f.search_field :name_cont, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :service_areas_name_cont, "Service Area Name" %>
+              <%= f.search_field :service_areas_name_cont, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :service_areas_statistics_active_users_gteq, "Min Active Users" %>
+              <%= f.search_field :service_areas_statistics_active_users_gteq, class: "form-control" %>
+            </div>
+
+            <%= f.submit "Search", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Library Cards Column -->
+    <div class="col-md-8">
+      <div class="row">
+        <% @libraries.each do |library| %>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= library.name %></h5>
+                <p class="card-text">
+                  Population: <%= library.population %><br>
+                  Bilingual: <%= library.bilingual ? "Yes" : "No" %><br>
+                  Northern: <%= library.northern ? "Yes" : "No" %>
+                </p>
+                <%= link_to "View Details", library_path(library), class: "btn btn-sm btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= paginate @libraries %>
